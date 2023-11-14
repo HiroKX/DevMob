@@ -1,25 +1,29 @@
 import { StatusBar } from 'expo-status-bar';
 import {StyleSheet, Text, TextInput, View} from 'react-native';
 import Search from './src/components/search'
-import {ReactElement} from "react";
-import Personne from "./src/components/Personne";
-import PersonneList from "./src/components/PersonneList";
+import {ReactElement, useState, useEffect} from "react";
+import Movie from './src/models/Movie';
+import {getMovies} from './src/components/MovieService'
+import MovieList from "./src/components/MovieList";
 
-const data: Array<Personne> = [
-  { id: "1", nom: "Andor", prenom: "Cassian"},
-  { id: "2", nom: "Ketchum", prenom: "Sacha"},
-  { id: "3", nom: "Stark", prenom: "Eddard"},
-  { id: "4", nom: "Sacquet", prenom: "Frodon"}
-]
+
+
 
 export default function App(): ReactElement {
+  const [lMovie, setlMovie] = useState<Array<Movie>>();
+  useEffect(()=>{
+    async function call(){
+      let movie:Movie[] = await getMovies();
+      setlMovie(movie);
+    }
+     call()
+  }, [])
+
+
   return (
       <View style={styles.container}>
-        <View style={styles.rowOne}>
-          <Search/>
-        </View>
-        <View style={styles.rowTwo}>
-          <PersonneList personnes={data} />
+        <View>
+          <MovieList movies={lMovie}/>
         </View>
       </View>
   );
