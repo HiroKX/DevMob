@@ -1,8 +1,8 @@
-import { ReactNode } from 'react';
-import Personne from "./Personne";
+import { ReactNode, useState } from 'react';
+import Personne from "../models/Personne";
 import {FlatList, Text, StyleSheet} from "react-native";
 
-interface PersonneListProps {
+export interface PersonneListProps {
     personnes: Array<Personne>;
 }
 
@@ -14,10 +14,12 @@ function PersonneList({ personnes }: PersonneListProps): ReactNode {
     );
 }
 
+
 const styles = StyleSheet.create({
     item: {
         marginVertical: 8,
         marginHorizontal: 16,
+        height: "100%"
     }
 });
 

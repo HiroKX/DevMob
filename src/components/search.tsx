@@ -16,6 +16,7 @@ export default function App() {
                 color="limegreen"
             />
         </View>
+        
     </View>
 }
 
