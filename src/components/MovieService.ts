@@ -26,3 +26,31 @@ export async function getMovies(): Promise<Array<Movie>> {
     throw error;
   }
 };
+
+export async function getMovie(id: number): Promise<Movie|undefined> {
+  try {
+    const res: Array<Movie> = [];
+
+    const f1 = require('../helpers/PopularMovies_p1.json');
+    const f2 = require('../helpers/PopularMovies_p2.json');
+
+    const response = [...(f1.results), ...(f2.results)] 
+
+    response.map((value: any) => {
+      if(value.id == id){
+      res.push(
+        {
+          id: value.id,
+          title: value.title,
+          releaseDate: value.release_date,
+          voteAverage: value.vote_average,
+          overview: value.overview
+        }
+      )
+    }});
+    return res.find((e)=>{return e.id === id});
+  } catch (error: any) {
+    console.log(`Error with function getMovies ${error.message}`);
+    throw error;
+  }
+};
