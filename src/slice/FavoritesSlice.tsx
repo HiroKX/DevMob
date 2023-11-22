@@ -13,7 +13,7 @@ const favoriteSlice = createSlice({
         state.push(action.payload);
     },
     removeFavorite(state, action: PayloadAction<Movie>) {
-        let index: number = state.indexOf(action.payload);
+        let index: number = state.findIndex(elem => action.payload.id == elem.id ); 
         if (index > -1) {
             state.splice(index, 1);
          }

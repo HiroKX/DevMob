@@ -29,7 +29,6 @@ function MovieDetail({ navigation, route}: Props): ReactNode {
         }
         call()
     }, [])
-    console.log(fav);
     return (
             <View style={styles.container}>
                 <Text style={styles.title}>{movie.title} {movie.voteAverage}</Text>
