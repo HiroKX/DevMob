@@ -11,8 +11,6 @@ export interface MovieListProps {
     movie: Array<Movie>;
 }
 
-
-
 function MovieList({ navigation }: Props): ReactNode {
     const [lMovie, setlMovie] = useState<Array<Movie>>();
     useEffect(() => {
@@ -23,16 +21,21 @@ function MovieList({ navigation }: Props): ReactNode {
         call()
     }, [])
     return (
-        <FlatList data={lMovie} renderItem={({ item }) =>
-        (<View style={styles.container}>
-            <Text style={styles.title}>{item.title} {item.voteAverage}</Text>
-            <Text style={styles.releaseDate}>{item.releaseDate}</Text>
-            <Text>{item.overview}</Text>
-            <Button title="Voir le détail" onPress={() => navigation.navigate('Detail', {
-                idMovie: item.id,
-            })} />
-        </View>)
-        } />
+        <View>
+            <View>
+                <Button title="Voir mes favoris" onPress={()=> navigation.navigate('Favorite')}/>
+            </View>
+            <FlatList data={lMovie} renderItem={({ item }) =>
+            (<View style={styles.container}>
+                <Text style={styles.title}>{item.title} {item.voteAverage}</Text>
+                <Text style={styles.releaseDate}>{item.releaseDate}</Text>
+                <Text>{item.overview}</Text>
+                <Button title="Voir le détail" onPress={() => navigation.navigate('Detail', {
+                    idMovie: item.id,
+                })} />
+            </View>)
+            } />
+        </View>
     );
 }
 

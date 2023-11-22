@@ -3,6 +3,9 @@ import {ReactElement, useState, useEffect} from "react";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import RootStack from './src/routes/RootStack'
+import { store } from './src/slice/FavoritesSlice';
+import { Provider } from 'react-redux';
+
 
 const Stack = createNativeStackNavigator();
 
@@ -10,9 +13,11 @@ const Stack = createNativeStackNavigator();
 export default function App(): ReactElement {
 
   return (
+    <Provider store={store}>
       <NavigationContainer>
         <RootStack/>
       </NavigationContainer>
+    </Provider>
   );
 }
 
